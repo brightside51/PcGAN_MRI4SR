@@ -2,7 +2,7 @@ import argparse
 
 def parse_arguments():
     parser = argparse.ArgumentParser(description='Select the values of the hyper-parameters')
-    parser.add_argument('--EXP_NO', default=3)
+    parser.add_argument('--EXP_NO', default=1)
     parser.add_argument('--TRAIN_BATCH_SIZE', default=1)
     parser.add_argument('--VAL_BATCH_SIZE', default=1)
     parser.add_argument('--LR', default=0.0002)

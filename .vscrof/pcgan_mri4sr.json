@@ -1,0 +1,22 @@
+{
+  "title": "vsCode - Remember Open Files (vscrof)",
+  "workspace": {
+    "name": "PcGAN_MRI4SR",
+    "rootPath": "x:/nas-ctm01/homes/pfsousa/SuperResolution/PcGAN_MRI4SR"
+  },
+  "path": "x:/nas-ctm01/homes/pfsousa/SuperResolution/PcGAN_MRI4SR/.vscrof/pcgan_mri4sr.json",
+  "files": {
+    "0": "X:/nas-ctm01/homes/pfsousa/MetaBreast/logs/pcgan_sr/V1/error_sample.err",
+    "1": "x:/nas-ctm01/homes/pfsousa/SuperResolution/PcGAN_MRI4SR/cfg_V1.sh",
+    "2": "x:/nas-ctm01/homes/pfsousa/MetaBreast/logs/pcgan_sr/V1/error.err",
+    "3": "x:/nas-ctm01/homes/pfsousa/MetaBreast/logs/pcgan_sr/V1/output.out",
+    "4": "x:/nas-ctm01/homes/pfsousa/SuperResolution/PcGAN_MRI4SR/train.py",
+    "5": "x:/nas-ctm01/homes/pfsousa/SuperResolution/PcGAN_MRI4SR/options.py",
+    "6": "x:/nas-ctm01/homes/pfsousa/SuperResolution/PcGAN_MRI4SR/networks.py",
+    "7": "x:/nas-ctm01/homes/pfsousa/MetaBreast/sandbox.ipynb",
+    "8": "git/scm1/input",
+    "9": "x:/nas-ctm01/homes/pfsousa/SuperResolution/PcGAN_MRI4SR/cfg_V1_sample.sh",
+    "10": "x:/nas-ctm01/homes/pfsousa/SuperResolution/PcGAN_MRI4SR/infer.py",
+    "11": "X:/nas-ctm01/homes/pfsousa/MetaBreast/logs/pcgan_sr/V1/output_sample.out"
+  }
+}

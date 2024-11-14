@@ -284,20 +284,6 @@ class BookKeeping:
             self.tboard[key].add_scalar(key, avg_losses[key], epoch)
 
 
-# Gaussian Noise Addition (MedicalDiffusion)
-def g_noise(img, factor = 40):
-
-    row , col = img.shape
-    img_g = img.clone() + 0.062
-    #print(img_g.min()); print(img_g.max())
-    noise = ((torch.randn((img_g.shape[0], img_g.shape[1])) * 1. + 0.) / np.pi + 1.) / 2.
-    noise = ((noise / np.pi + 1.) / 2.) * (factor / 100)
-    #print(noise); print(noise.min()); print(noise.max())
-    img_g = img_g + noise
-    #print(img_g.min()); print(img_g.max())
-    img_g = (img_g - img_g.min()) / (img_g.max() - img_g.min())
-    return img_g
-
 def save_checkpoint(epoch, generator, discriminator, best_metrics, optimizer_G, lr_scheduler_G,
                     optimizer_D, lr_scheduler_D, filename='checkpoint.pth.tar'):
     state = {'epoch': epoch, 'G_state_dict': generator.state_dict(), 'D_state_dict': discriminator.state_dict(),
@@ -334,10 +320,6 @@ def train(G, D, trn_dl, epoch, epochs, MSE, adv_loss, opt_G, opt_D, train_losses
 
     t_pbar = tqdm(trn_dl, desc=pbar_desc('train', epoch, epochs, 0.0, {'mse': 0.0}))
     for lr_imgs, hr_imgs in t_pbar:
-
-        print(lr_imgs.shape)
-        for slice in range(lr_imgs.shape[1]):
-            lr_imgs[0, 0, slice, :, :] = g_noise(lr_imgs[0, 0, slice, :, :])
 
         # Send the images onto the appropriate device
         lr_imgs = lr_imgs.to(args.DEVICE)

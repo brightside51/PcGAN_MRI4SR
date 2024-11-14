@@ -1,0 +1,27 @@
+{
+  "tabs": [
+    {
+      "name": "PcGAN_MRI4SR_V3",
+      "tabGroups": [
+        {
+          "files": [
+            "file:///x%3A/nas-ctm01/homes/pfsousa/SuperResolution/PcGAN_MRI4SR/cfg_V3.sh",
+            "file:///x%3A/nas-ctm01/homes/pfsousa/MetaBreast/logs/pcgan_sr/V3/output.out",
+            "file:///x%3A/nas-ctm01/homes/pfsousa/MetaBreast/logs/pcgan_sr/V3/error.err",
+            "file:///x%3A/nas-ctm01/homes/pfsousa/SuperResolution/PcGAN_MRI4SR/train.py",
+            "file:///x%3A/nas-ctm01/homes/pfsousa/SuperResolution/PcGAN_MRI4SR/infer.py"
+          ],
+          "viewColumn": 1
+        }
+      ],
+      "layout": {
+        "orientation": 1,
+        "groups": [
+          {
+            "size": 663
+          }
+        ]
+      }
+    }
+  ]
+}

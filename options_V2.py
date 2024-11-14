@@ -2,7 +2,7 @@ import argparse
 
 def parse_arguments():
     parser = argparse.ArgumentParser(description='Select the values of the hyper-parameters')
-    parser.add_argument('--EXP_NO', default=3)
+    parser.add_argument('--EXP_NO', default=2)
     parser.add_argument('--TRAIN_BATCH_SIZE', default=1)
     parser.add_argument('--VAL_BATCH_SIZE', default=1)
     parser.add_argument('--LR', default=0.0002)
@@ -17,12 +17,12 @@ def parse_arguments():
     #parser.add_argument('--HR_NORM_ARR', default='data_mudi_npy/norm_factor_hr_12.npy')
     
     parser.add_argument('--WORKERS', default=8)
-    parser.add_argument('--SCALE', default=4.0)
+    parser.add_argument('--SCALE', default=2.0)
     parser.add_argument('--LR_DECAY', default=0.5)
     parser.add_argument('--LR_STEP', default=1344)
     parser.add_argument('--LR_G', default=1e-4)
     parser.add_argument('--LR_D', default=1e-4)
-    parser.add_argument('--LOAD_CHECKPOINT', default='checkpoint.pth.tar')
+    parser.add_argument('--LOAD_CHECKPOINT', default='checkpoint.pth_V2.tar')
     parser.add_argument('--ADVERSARIAL_LOSS_WEIGHT', default=1.0)
     parser.add_argument('--MSE_LOSS_WEIGHT', default=1.0)
     parser.add_argument('--SSIM_LOSS_WEIGHT', default=1.0)
@@ -32,7 +32,7 @@ def parse_arguments():
     parser.add_argument('--NUM_RESBLOCKS', default=8)
     parser.add_argument('--IN_CHANNELS', default=1)
     parser.add_argument('--OUT_CHANNELS', default=1)
-    parser.add_argument('--BATCHES_TO_SAVE', default=1)
+    parser.add_argument('--BATCHES_TO_SAVE', default=2)
     parser.add_argument('--SCHEME', default='isotropic')
     parser.add_argument('--SAVE_EVERY', default=3)
 

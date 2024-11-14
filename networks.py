@@ -2,7 +2,7 @@ import torch
 from torch import nn
 from torch.nn import init
 import torch.nn.functional as F
-from deform_conv_3d import DeformConv3D
+#from deform_conv_3d import DeformConv3D
 
 
 def init_weights(net, init_type='normal', gain=0.02):
@@ -104,22 +104,25 @@ class SwitchableResBlock(nn.Module):
 class UpConv(nn.Module):
     def __init__(self, inf, outf, kernel, stride, padding, factor, slope=0.3):
         super().__init__()
+        #print(f"factor: {factor}")
         self.trunk = nn.Sequential(
             nn.Conv3d(inf, outf, kernel, stride, padding),
             nn.LeakyReLU(negative_slope=slope, inplace=True),
-            nn.Upsample(scale_factor=factor),
+            nn.Upsample(scale_factor = factor),
             nn.Conv3d(outf, outf, kernel, stride, padding),
             nn.LeakyReLU(negative_slope=slope, inplace=True),
         )
 
     def forward(self, x):
+        
         x = self.trunk(x)
         return x
 
 
 class Generator(nn.Module):
 
-    def __init__(self, kernel, inc, outc, ngf, n_blocks, scheme, tanh=True):
+    def __init__(self, kernel, inc, outc, ngf, n_blocks, scheme, scale = 4.0, tanh=True):
+    #def __init__(self, kernel, inc, outc, ngf, n_blocks, scheme, tanh=True):
         super().__init__()
         self.conv1 = ConvBlock(inc, ngf, kernel, 1, 1)
 
@@ -131,7 +134,8 @@ class Generator(nn.Module):
         self.conv2 = ConvBlock(ngf, ngf, kernel, 1, 1)
 
         if scheme == 'isotropic':
-            self.upsample = UpConv(ngf, ngf * 2, kernel, 1, 1, (2.0, 2.0, 2.0))
+            #self.upsample = UpConv(ngf, ngf * 2, kernel, 1, 1, (2.0, 2.0, 2.0))
+            self.upsample = UpConv(ngf, ngf * 2, kernel, 1, 1, (1.0, scale, scale))
         elif scheme == 'anisotropic':
             self.upsample = UpConv(ngf, ngf * 2, kernel, 1, 1, (2.0, 1.0, 1.0))
         else:
@@ -229,10 +233,10 @@ class Discriminator(nn.Module):
 
 class ProjectionDiscriminator(nn.Module):
 
-    def __init__(self, kernel, inc, ndf, scheme, logits=False):
+    def __init__(self, kernel, inc, ndf, scheme, scale = 4, logits=False):
         super().__init__()
         if scheme == 'isotropic':
-            stride = (2, 2, 2)
+            stride = (1, int(scale), int(scale))
         elif scheme == 'anisotropic':
             stride = (2, 1, 1)
         else:
@@ -261,9 +265,12 @@ class ProjectionDiscriminator(nn.Module):
 
     def forward(self, x, lr):
         x = self.features1(x)  # Image size reduces to half
+        #print(x.shape)
+        #print(lr.shape)
 
         # Dot product
         h = self.projection_conv(x)
+        #print(h.shape)
         h = torch.sum(h * lr, dim=(1, 2, 3, 4))
 
         x = self.features2(x)
